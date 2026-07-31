@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgroHealth Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>🌿 AgroHealth</h2>
+
+        <ul>
+
+            <li><i class="fa-solid fa-house"></i> Home</li>
+
+            <li><i class="fa-solid fa-camera"></i> Camera</li>
+
+            <li><i class="fa-solid fa-seedling"></i> Crops</li>
+
+            <li><i class="fa-solid fa-microchip"></i> Sensors</li>
+
+            <li>
+<a href="disease.html">
+
+<i class="fa-solid fa-robot"></i>
+
+AI Disease Detection
+
+</a>
+</li>
+
+            <li><i class="fa-solid fa-chart-line"></i> Reports</li>
+
+            <li><i class="fa-solid fa-gear"></i> Settings</li>
+
+            <li><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <h2>Dashboard</h2>
+
+            <div>
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span id="welcomeUser"></span>
+
+            </div>
+
+        </header>
+
+        <!-- Cards -->
+
+     <section class="cards">
+
+    <div class="dash-card">
+
+        <h3>🌡 Temperature</h3>
+
+        <h1 id="temperature">28°C</h1>
+
+    </div>
+
+    <div class="dash-card">
+
+        <h3>💧 Soil Moisture</h3>
+
+        <h1 id="moisture">67%</h1>
+
+    </div>
+
+    <div class="dash-card">
+
+        <h3>🌿 Healthy Crops</h3>
+
+        <h1 id="healthy">92%</h1>
+
+    </div>
+
+    <div class="dash-card">
+
+        <h3>🚨 Disease Alerts</h3>
+
+        <h1 id="alerts">4</h1>
+
+    </div>
+
+</section>
+<section class="monitoring">
+
+    <div class="camera-box">
+
+        <h2>📷 Live Camera Feed</h2>
+
+        <img src="images/field2.jpg" alt="Live Camera Feed" id="cameraFeed">
+
+        <button onclick="changeCamera()">
+            Refresh Camera
+        </button>
+
+    </div>
+
+    <div class="map-box">
+
+        <h2>🗺 Farm Field Status</h2>
+
+        <img id="farmMap"
+        src="images/farm-map.jpg"
+        alt="Farm Map">
+
+    </div>
+
+</section>
+
+<section class="weather-section">
+
+    <div class="weather-card">
+
+        <h2>🌦️ Live Weather</h2>
+
+        <div class="weather-grid">
+
+            <div class="weather-item">
+                <h3>🌡 Temperature</h3>
+                <p id="weatherTemp">30°C</p>
+            </div>
+
+            <div class="weather-item">
+                <h3>💧 Humidity</h3>
+                <p id="weatherHumidity">72%</p>
+            </div>
+
+            <div class="weather-item">
+                <h3>💨 Wind Speed</h3>
+                <p id="weatherWind">12 km/h</p>
+            </div>
+
+            <div class="weather-item">
+                <h3>🌧 Rain Chance</h3>
+                <p id="weatherRain">20%</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="analytics-section">
+
+    <h2>📊 Crop Analytics Dashboard</h2>
+
+    <div class="analytics-grid">
+
+        <div class="chart-box">
+            <h3>🌡 Temperature Trend</h3>
+            <canvas id="tempChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>💧 Soil Moisture Trend</h3>
+            <canvas id="moistureChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>🌿 Crop Health</h3>
+            <canvas id="healthChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>🚨 Disease Distribution</h3>
+            <canvas id="diseaseChart"></canvas>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="farm-section">
+
+    <h2>🗺 Smart Farm Map</h2>
+
+    <div class="farm-grid">
+
+        <div class="zone healthy" onclick="showZone('A1','Healthy')">A1</div>
+        <div class="zone healthy" onclick="showZone('A2','Healthy')">A2</div>
+        <div class="zone danger" onclick="showZone('A3','Leaf Blight')">A3</div>
+        <div class="zone healthy" onclick="showZone('A4','Healthy')">A4</div>
+
+        <div class="zone healthy" onclick="showZone('B1','Healthy')">B1</div>
+        <div class="zone warning" onclick="showZone('B2','Low Moisture')">B2</div>
+        <div class="zone healthy" onclick="showZone('B3','Healthy')">B3</div>
+        <div class="zone healthy" onclick="showZone('B4','Healthy')">B4</div>
+
+        <div class="zone healthy" onclick="showZone('C1','Healthy')">C1</div>
+        <div class="zone healthy" onclick="showZone('C2','Healthy')">C2</div>
+        <div class="zone healthy" onclick="showZone('C3','Healthy')">C3</div>
+        <div class="zone danger" onclick="showZone('C4','Rust Disease')">C4</div>
+
+    </div>
+
+    <div id="zoneInfo" class="zone-info">
+
+        Click any farm zone to view its details.
+
+    </div>
+
+</section>
+
+<section class="alerts-section">
+
+    <h2>🚨 Recent Farm Alerts</h2>
+
+    <div id="alertBox" class="alert-box">
+
+        <div class="alert success">
+            🟢 System Started Successfully
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- Placeholder -->
+
+        
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
